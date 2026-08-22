@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zcode 远程控制台入口</title>
+<style>body{font-family:system-ui;background:#0a0d16;color:#eef0f8;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}main{text-align:center;padding:24px}h1{font-size:20px;font-weight:600}p{color:#a6abc4;font-size:14px;margin-top:10px}</style>
+</head>
+<body>
+<main>
+<h1>Zcode 远程控制台</h1>
+<p>正在连接本机服务…</p>
+</main>
+<script>
+fetch("endpoint.json?t=" + Date.now(), {cache:"no-store"}).then(function(r){return r.json();}).then(function(d){var u = d && d.url; if(typeof u === "string" && /^https://[a-z0-9.-]+.trycloudflare.com$/i.test(u)){location.replace(u);} else {document.querySelector("p").textContent = "本机服务暂不可用";}}).catch(function(){document.querySelector("p").textContent = "本机服务暂不可用";});
+</script>
+</body>
+</html>
